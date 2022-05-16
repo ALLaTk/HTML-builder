@@ -4,7 +4,8 @@ const pathFile = path.join(__dirname, 'files');
 const pathFileCopy = path.join(__dirname, 'files-copy');
 const { stdout } = process;
 
-fs.mkdir(path.join(__dirname, 'files-copy'), { recursive: true }, (err) => {
+
+fs.mkdir(pathFileCopy, { recursive: true }, (err) => {
   if (err) throw err;
 });
 
