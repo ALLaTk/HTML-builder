@@ -9,12 +9,15 @@ fs.mkdir(pathFileCopy, { recursive: true }, (err) => {
   if (err) throw err;
 });
 
-fs.readdir(pathFileCopy, {withFileTypes: true}, (err, data,) => {
+fs.readdir(pathFileCopy, (err, data) => {
   if (err) throw err;
-
-  data.forEach(el => {
-    fs.unlink(path.join(pathFileCopy, el.name), (err) => {
-      if (err) throw err;
+  data.forEach((elem) => {
+    fs.access(path.join(pathFile, elem), (err) => {
+      if (err) {
+        fs.rm(path.join(pathFileCopy, elem), { recursive: true, force: true}, (err) => {
+          if (err) throw err;
+        });
+      }
     });
   });
 });
@@ -32,3 +35,4 @@ fs.readdir(pathFile, {withFileTypes: true}, (err, data,) => {
     }
   });
 });
+
