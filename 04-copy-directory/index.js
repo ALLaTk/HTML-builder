@@ -6,16 +6,14 @@ const pathFileCopy = path.join(__dirname, 'files-copy');
 
 const copyDir = async (pathFile, pathFileCopy) => {
   
-  await promise.mkdir(pathFileCopy, {recursive: true, force: true}, (err) => {
-    if (err) throw err;
-  });
+  await promise.mkdir(pathFileCopy, {recursive: true, force: true});
   
-  fs.readdir(pathFileCopy, {recursive: true, force: true}, (err, data) => {
+  fs.readdir(pathFileCopy,  (err, data) => {
     if (err) throw err;
     for(let elem of data) {
       fs.access(path.join(pathFile, elem), (err) => {
         if (err) {
-          fs.rm(path.join(pathFileCopy, elem), { recursive: true, force: true}, (err)   => {
+          fs.rm(path.join(pathFileCopy, elem), (err)   => {
             if (err) throw err;
           });
         }
@@ -23,7 +21,7 @@ const copyDir = async (pathFile, pathFileCopy) => {
     }
   });
   
-  fs.readdir(pathFile, {recursive: true, force: true, withFileTypes: true}, (err, data,) => {
+  fs.readdir(pathFile, {withFileTypes: true}, (err, data,) => {
     if (err) throw err;
     for(let el of data) {
       if(el.isFile()) {
