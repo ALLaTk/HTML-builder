@@ -20,7 +20,7 @@ const copyDir = async (pathFile, pathFileCopy) => {
           });
         }
       });
-    };
+    }
   });
   
   fs.readdir(pathFile, {recursive: true, force: true, withFileTypes: true}, (err, data,) => {
@@ -34,7 +34,7 @@ const copyDir = async (pathFile, pathFileCopy) => {
       else if(el.isDirectory()) {
         copyDir(path.join(pathFile, el.name), path.join(pathFileCopy, el.name));
       }
-    };
+    }
   });
   
 };
