@@ -12,7 +12,7 @@ const components = path.join(__dirname, 'components');
 const style = fs.createWriteStream(fileStyle, 'utf-8');
 const index = fs.createWriteStream(fileIndex, 'utf-8');
 
-const buildFiles = async () => {
+(async () => {
 
   await promise.mkdir(pathDir, {recursive: true, force: true});
 
@@ -43,9 +43,9 @@ const buildFiles = async () => {
   index.write(str);  
    
   copyDir(pathFile, pathFileCopy);
-};
+  
+})();
 
-buildFiles ();
 
 const copyDir = async (pathFile, pathFileCopy) => {
   
