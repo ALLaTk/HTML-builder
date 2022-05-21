@@ -35,7 +35,7 @@ const index = fs.createWriteStream(fileIndex, 'utf-8');
     const readElem = await promise.readFile(pathElem, {recursive: true, force: true});
     if(elem.isFile() && path.extname(elem.name) === '.html') {
       if (str.includes(`{{${elem.name.split('.')[0]}}}`)){
-        str = str.replace(`{{${elem.name.split('.')[0]}}}`, readElem.toString());    
+        str = str.replace(`{{${elem.name.split('.')[0]}}}`, readElem);    
       }
     }
   }
@@ -43,7 +43,6 @@ const index = fs.createWriteStream(fileIndex, 'utf-8');
   index.write(str);  
    
   copyDir(pathFile, pathFileCopy);
-  
 })();
 
 
