@@ -78,14 +78,3 @@ const copyDir = async (pathFile, pathFileCopy) => {
   });
   
 };
-
-
-
- 
-
-
- 
-
-
-
-  
